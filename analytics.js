@@ -5,7 +5,7 @@ import { ScreenHit, PageHit, Event, Serializable } from './hits';
 
 const { width, height } = Dimensions.get('window');
 
-const expoConstants = require('../../package.json');
+const version = require('../../package.json').version;
 
 let defaultOptions = { debug: false };
 
@@ -23,9 +23,9 @@ export default class Analytics {
                 this.userAgent = userAgent;
 
                 this.parameters = {
-                    an: expoConstants.name,
+                    an: 'ember',
                     aid: 'expo-template-bare',
-                    av: expoConstants.version,
+                    av: version,
                     sr: `${width}x${height}`,
                     ...additionalParameters
                 };
