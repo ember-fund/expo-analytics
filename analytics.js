@@ -5,7 +5,7 @@ import { ScreenHit, PageHit, Event, Serializable } from './hits';
 
 const { width, height } = Dimensions.get('window');
 
-const expoConstants = require('../../package.json').version;
+const expoConstants = require('../../package.json');
 
 let defaultOptions = { debug: false };
 
