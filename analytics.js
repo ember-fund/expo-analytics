@@ -5,6 +5,8 @@ import { ScreenHit, PageHit, Event, Serializable } from './hits';
 
 const { width, height } = Dimensions.get('window');
 
+const expoConstants = require('../../package.json').version;
+
 let defaultOptions = { debug: false };
 
 export default class Analytics {
@@ -20,10 +22,10 @@ export default class Analytics {
             .then(userAgent => {
                 this.userAgent = userAgent;
 
-                this.parameters = { 
-                    an: Constants.manifest.name, 
-                    aid: Constants.manifest.slug, 
-                    av: Constants.manifest.version,
+                this.parameters = {
+                    an: expoConstants.name,
+                    aid: 'expo-template-bare',
+                    av: expoConstants.version,
                     sr: `${width}x${height}`,
                     ...additionalParameters
                 };
@@ -84,13 +86,13 @@ export default class Analytics {
         * &cd{n}= custom dimensions
         * &cm{n}= custom metrics
         * &z= cache buster (prevent browsers from caching GET requests -- should always be last)
-        * 
+        *
         * Ecommerce track support (transaction)
         * &ti= transaction The transaction ID. (e.g. 1234)
         * &ta= The store or affiliation from which this transaction occurred (e.g. Acme Clothing).
         * &tr= Specifies the total revenue or grand total associated with the transaction (e.g. 11.99). This value may include shipping, tax costs, or other adjustments to total revenue that you want to include as part of your revenue calculations.
         * &tt= Specifies the total shipping cost of the transaction. (e.g. 5)
-        * 
+        *
         * Ecommerce track support (addItem)
         * &ti= transaction The transaction ID. (e.g. 1234)
         * &in= The item name. (e.g. Fluffy Pink Bunnies)
